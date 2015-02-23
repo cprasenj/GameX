@@ -36,17 +36,17 @@ var game = {
 	}
 };
 
-gameUtil.thorowDice = function() {
+gameUtil.throwDice = function() {
 	var dice = [1,2,3,0];
-	return (ld.sample(dice)+ld.sample(dice) || 12);
+	game[game.who_sTurn].diceRolled.push((ld.sample(dice)+ld.sample(dice) || 12));
 }
 
-gameUtil.thorowUntilFinish = function(){
+gameUtil.isFinish = function(){
 	var halts=[2,3,4];
-	var diceVal = thorowDice();
-	return halts.indexOf(diceVal)<0;
+	var diceVal = ld.last(game[game.who_sTurn].diceRolled);
+	return halts.indexOf(diceVal)>=0;
 }
 
 
-exports.Game = game;
+exports.game = game;
 exports.gameUtil = gameUtil;
