@@ -1,6 +1,4 @@
 var assert = require("chai").assert;
-var ld = require('lodash');
-var gameUtil = require("../gameModule/game.js").gameUtil;
 var GameX = require("../gameModule/game.js").GameX;
 var paths = require("../gameModule/paths.js").paths;
 
@@ -30,6 +28,11 @@ describe("GameX ",function(){
 			assert.equal(game.hasToRollTheDiceAgain(),true);
 		});
 	});
+	describe("who_sTurn",function() {
+		it("initially it is the turn of player1",function() {
+			assert.equal(game.who_sTurn,"player1");
+		})
+	})
 	describe("Constructor",function(){
 		it("should give an Object containing players of given number",function(done){
 			assert.ok(game.player1);
