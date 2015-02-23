@@ -6,7 +6,6 @@ var paths=[
 		[28,21,14,7,6,5,4,3,2,1,8,15,22,29,36,43,44,45,46,47,48,49,42,35,41,40,39,38,37,30,23,16,9,10,11,12,13,20,27,34,33,32,31,24,17,18,19,26,25]
 	];
 var game = {
-	safeZone :[4,9,13,22,25,28,37,41,46],
 	who_sTurn:"player1",
 	player1 : {
 		"diceRolled":[], 
@@ -20,7 +19,7 @@ var game = {
 		],
 		path:paths[0],
 	},
-
+	safeZones : [4,9,13,22,25,28,37,41,46],
 	player2 : {
 		"diceRolled":[1,5,5,2], 
 		coins:[
@@ -43,3 +42,7 @@ var thorowDice = function() {
 var isAllowed = function(){
 	var halts=[2,3,4];
 }
+
+
+
+exports.Game = game;
