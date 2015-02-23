@@ -12,7 +12,7 @@ var game = {
 		],
 		path:[]
 	},
-
+	safeZones : [4,9,13,22,25,28,37,41,46],
 	player2 : {
 		"diceRolled":[1,5,5,2], 
 		coins:[
@@ -26,5 +26,5 @@ var game = {
 		path:[]
 	}
 
-	
+
 };
