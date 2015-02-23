@@ -5,6 +5,27 @@ block content
  div
   div(id='diceTrack')
    |dice rolled
+   div
+    p(id="turn") Player1
+   div(id="coins")
+    button(id="1") c1
+    button(id="2") c2
+    button(id="3") c3
+    button(id="4") c4
+    button(id="5") c5
+    button(id="6") c6
+   div(id="diceStack")
+    p DICE STACK
+    table
+     tr
+      td
+        <input type="checkbox" name="diceVlaue" value="1">
+      td 1
+     tr
+      td
+        <input type="checkbox" name="diceVlaue" value="1">
+      td 2
+   button(id="TD") TROW DICE
   div(id='board')
    |what is going
   div(id='playersTrack')
