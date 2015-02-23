@@ -28,3 +28,5 @@ var game = {
 
 
 };
+
+exports.Game = game;

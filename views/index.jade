@@ -8,12 +8,12 @@ block content
    div
     p(id="turn") Player1
    div(id="coins")
-    button(id="1") c1
-    button(id="2") c2
-    button(id="3") c3
-    button(id="4") c4
-    button(id="5") c5
-    button(id="6") c6
+    button(id="c1") c1
+    button(id="c2") c2
+    button(id="c3") c3
+    button(id="c4") c4
+    button(id="c5") c5
+    button(id="c6") c6
    div(id="diceStack")
     p DICE STACK
     table
@@ -37,3 +37,7 @@ block content
     div.setAttribute('class','cell');
     board.appendChild(div);
    }
+  each zoneId in Game.safeZones
+   script.
+    var zone=this.document.getElementById(#{zoneId});
+    zone.setAttribute('style','background-image: url(./images/safe.png);');
