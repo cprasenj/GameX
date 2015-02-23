@@ -2,15 +2,20 @@ var ld = require('lodash');
 var paths = require('./paths.js').paths;
 
 var gameUtil = {};
-gameUtil.thorowDice = function() {
+gameUtil.giveDiceValue = function() {
 	var dice = [1,2,3,0];
 	return (ld.sample(dice)+ld.sample(dice) || 12);
 }
-gameUtil.thorowUntilFinish = function(){
+gameUtil.thorowUntilFinish = function(diceVal){
 	var halts=[2,3,4];
-	var diceVal = thorowDice();
 	return halts.indexOf(diceVal)<0;
 }
+
+gameUtil.throwDice = function() {
+	var diceVal = thorowDice();
+
+}
+
 var samplePlayer = {
 	diceRolled: [],
 	coins: [
@@ -70,10 +75,10 @@ var game = {
 
 };
 
-gameUtil.throwDice = function() {
-	var dice = [1,2,3,0];
-	game[game.who_sTurn].diceRolled.push((ld.sample(dice)+ld.sample(dice) || 12));
-}
+// gameUtil.throwDice = function() {
+// 	var dice = [1,2,3,0];
+// 	game[game.who_sTurn].diceRolled.push((ld.sample(dice)+ld.sample(dice) || 12));
+// }
 
 exports.gameUtil = gameUtil;
 exports.GameX = GameX;
