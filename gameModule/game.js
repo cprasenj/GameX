@@ -29,7 +29,12 @@ var GameX = function(numberOfPlayers){
 		game[player].coins[cId].position +=distance;
 		callAfterMoved(player,cId);
 	};
-
+	game.hasTurnCompleted = function(){
+		var halts=[2,3,4];
+		var player=game.who_sTurn;
+		var diceVal = ld.last(game[player].diceRolled);
+		return halts.indexOf(diceVal)>=0;
+	}
 	return game;
 }
 
@@ -70,13 +75,5 @@ gameUtil.throwDice = function() {
 	game[game.who_sTurn].diceRolled.push((ld.sample(dice)+ld.sample(dice) || 12));
 }
 
-gameUtil.isFinish = function(){
-	var halts=[2,3,4];
-	var diceVal = ld.last(game[game.who_sTurn].diceRolled);
-	return halts.indexOf(diceVal)>=0;
-}
-
-
-exports.game= game;
 exports.gameUtil = gameUtil;
 exports.GameX = GameX;

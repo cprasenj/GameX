@@ -2,7 +2,6 @@ var assert = require("chai").assert;
 var ld = require('lodash');
 var gameUtil = require("../gameModule/game.js").gameUtil;
 var GameX = require("../gameModule/game.js").GameX;
-var game = require("../gameModule/game.js").game;
 var paths = require("../gameModule/paths.js").paths;
 
 // describe("Adda", function(){
@@ -24,22 +23,23 @@ var paths = require("../gameModule/paths.js").paths;
 // 	});
 
 
-describe("#isFinish",function(){
-	it("It should give truthy value for ",function() {
-		var halts =[2,3,4];
-		game.who_sTurn="player2";
-		var isFinish = gameUtil.isFinish();
-		assert.equal(isFinish,true);
-	})
-	it("It should give falsy value for",function() {
-		var halts =[2,3,4];
-		game.who_sTurn="player1";
-		var isFinish = gameUtil.isFinish();
-		assert.equal(isFinish,false);
-	})
-})
 
 describe("GameX ",function(){
+	beforeEach(function(){
+		game = new GameX(2);
+	});
+	describe("#hasTurnCompleted",function(){
+		it("It should give truthy value for ",function() {
+			game.who_sTurn="player2";
+			game.player2.diceRolled = [1,5,5,2];
+			assert.equal(game.hasTurnCompleted(),true);
+		});
+		it("It should give falsy value for ",function() {
+			game.who_sTurn="player1";
+			game.player1.diceRolled = [6];
+			assert.equal(game.hasTurnCompleted(),false);
+		});
+	});
 	describe("Constructor",function(){
 		it("should give an Object containing players of given number",function(done){
 			var game = new GameX(2);
