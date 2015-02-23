@@ -61,18 +61,29 @@ describe("GameX ",function(){
 		});
 	});
 	describe("moveTo",function(){
-		it("should change the position of the coin with the given number",function(done){
-			var player = "player1";
+		it("should change the position of the coin with the given number on outer ring",function(done){
 			var cId = 0;
 			var distance = 5;
-			game[player].coins[cId].position = 2;
+			game.player1.coins[cId].position = 2;
 			var afterMoved = function(player,cId){
 				var coin = game[player].coins[cId];
 				assert.deepEqual(coin, game.player1.coins[0]);
 				assert.equal(coin.position, 7);
 				done();
 			};
-			game.moveTo(player,cId,distance,afterMoved);
+			game.moveTo("player1",cId,distance,afterMoved);
+		});
+		it("should change the position of the coin with the given number inner ring",function(done){
+			var cId = 0;
+			var distance = 12;
+			game.player2.coins[cId].position = 25;
+			var afterMoved = function(player,cId){
+				var coin = game[player].coins[cId];
+				assert.deepEqual(coin, game.player2.coins[0]);
+				assert.equal(coin.position, 37);
+				done();
+			};
+			game.moveTo("player2",cId,distance,afterMoved);
 		});
 	});
 });
