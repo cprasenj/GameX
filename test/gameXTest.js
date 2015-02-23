@@ -1,6 +1,8 @@
 var assert = require("chai").assert;
+var ld = require('lodash');
 var gameUtil = require("../gameModule/game.js").gameUtil;
 var GameX = require("../gameModule/game.js").GameX;
+var game = require("../gameModule/game.js").game;
 var paths = require("../gameModule/paths.js").paths;
 
 // describe("Adda", function(){
@@ -22,11 +24,20 @@ var paths = require("../gameModule/paths.js").paths;
 // 	});
 
 
-// describe("#thorowUntilFinish",function(){
-// 	it("It should give truthy value for ",function() {
-// 		assert.equal(2,2);
-// 	})
-// })
+describe("#isFinish",function(){
+	it("It should give truthy value for ",function() {
+		var halts =[2,3,4];
+		game.who_sTurn="player2";
+		var isFinish = gameUtil.isFinish();
+		assert.equal(isFinish,true);
+	})
+	it("It should give falsy value for",function() {
+		var halts =[2,3,4];
+		game.who_sTurn="player1";
+		var isFinish = gameUtil.isFinish();
+		assert.equal(isFinish,false);
+	})
+})
 
 describe("GameX ",function(){
 	describe("Constructor",function(){

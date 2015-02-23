@@ -32,15 +32,13 @@ var GameX = function(numberOfPlayers){
 
 	return game;
 }
-exports.GameX = GameX;
-exports.gameUtil = gameUtil;
 
 
 // help content
 var game = {
 	who_sTurn:"player1",
 	player1 : {
-		"diceRolled":[], 
+		"diceRolled":[6], 
 		coins:[
 		{ position : 0, owner : "player1" },
 		{ position : 0, owner : "player1" },
@@ -64,4 +62,21 @@ var game = {
 		],
 		path:paths[2]
 	}
+
 };
+
+gameUtil.throwDice = function() {
+	var dice = [1,2,3,0];
+	game[game.who_sTurn].diceRolled.push((ld.sample(dice)+ld.sample(dice) || 12));
+}
+
+gameUtil.isFinish = function(){
+	var halts=[2,3,4];
+	var diceVal = ld.last(game[game.who_sTurn].diceRolled);
+	return halts.indexOf(diceVal)>=0;
+}
+
+
+exports.game= game;
+exports.gameUtil = gameUtil;
+exports.GameX = GameX;
