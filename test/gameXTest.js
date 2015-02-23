@@ -85,4 +85,17 @@ describe("GameX ",function(){
 			game.moveTo(player,cId,distance,afterMoved);
 		});
 	});
+	describe("#rollTheDice",function() {
+		it("should insert a value inbetween valid range into diceRolled of who_sTurn",function() {
+			var len = game[game.who_sTurn].diceRolled.length;
+			var rollTheDiceCallback = function() {
+				assert.equal(game[game.who_sTurn].diceRolled.length,len+1);
+			};
+			game.rollTheDice(rollTheDiceCallback);
+			len = game[game.who_sTurn].diceRolled.length;
+			game.rollTheDice(rollTheDiceCallback);
+			len = game[game.who_sTurn].diceRolled.length;
+			game.rollTheDice(rollTheDiceCallback);
+		});
+	})
 });

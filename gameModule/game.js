@@ -32,9 +32,10 @@ var GameX = function(numberOfPlayers){
 		var diceVal = ld.last(game[player].diceRolled);
 		return !(halts.indexOf(diceVal)>=0);
 	};
-	game.rollTheDice = function(player,callback) {
+	game.rollTheDice = function(callback) {
 		diceval = giveDiceValue();
-
+		game[game.who_sTurn].diceRolled.push(diceval);
+		callback();
 	};
 	game.changePlayer = function() {
 		var turn = game.players.indexOf(game.who_sTurn);
