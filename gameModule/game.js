@@ -34,11 +34,11 @@ var GameX = function(numberOfPlayers){
 		game[player].coins[cId].position +=distance;
 		callAfterMoved(player,cId);
 	};
-	game.hasTurnCompleted = function(){
+	game.hasToRollTheDiceAgain = function(){
 		var halts=[2,3,4];
 		var player=game.who_sTurn;
 		var diceVal = ld.last(game[player].diceRolled);
-		return halts.indexOf(diceVal)>=0;
+		return !(halts.indexOf(diceVal)>=0);
 	}
 	return game;
 }
