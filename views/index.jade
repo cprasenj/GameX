@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+ h1(id='pageTitle') #{title}
+ div
+  div(id='diceTrack')
+   |dice rolled
+  div(id='board')
+   |what is going
+  div(id='playersTrack')
+   |who is playing
+  script(scr='/javascripts/render.js')
+  script.
+   console.log(5);
+   renderTheBlocks();
