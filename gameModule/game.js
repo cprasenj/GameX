@@ -44,7 +44,6 @@ gameUtil.thorowDice = function() {
 gameUtil.thorowUntilFinish = function(){
 	var halts=[2,3,4];
 	var diceVal = thorowDice();
-	
 	return halts.indexOf(diceVal)<0;
 }
 
