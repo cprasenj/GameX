@@ -32,6 +32,13 @@ describe("GameX ",function(){
 		it("initially it is the turn of player1",function() {
 			assert.equal(game.who_sTurn,"player1");
 		})
+		it("should show player2 after player1 has finished his turn",function() {
+			game.who_sTurn = "player1";
+			game.changePlayer();
+			assert.equal(game.who_sTurn,"player2");
+			game.changePlayer();
+			assert.equal(game.who_sTurn,"player1");
+		})
 	})
 	describe("Constructor",function(){
 		it("should give an Object containing players of given number",function(done){
