@@ -31,6 +31,12 @@ describe("#isFinish",function(){
 		var isFinish = gameUtil.isFinish();
 		assert.equal(isFinish,true);
 	})
+	it("It should give falsy value for",function() {
+		var halts =[2,3,4];
+		game.who_sTurn="player1";
+		var isFinish = gameUtil.isFinish();
+		assert.equal(isFinish,false);
+	})
 })
 
 describe("GameX ",function(){

@@ -21,7 +21,7 @@ var GameX = function(numberOfPlayers){
 var game = {
 	who_sTurn:"player1",
 	player1 : {
-		"diceRolled":[], 
+		"diceRolled":[6], 
 		coins:[
 		{ position : 0, owner : "player1" },
 		{ position : 0, owner : "player1" },
