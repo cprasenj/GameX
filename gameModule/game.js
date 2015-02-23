@@ -17,6 +17,15 @@ gameUtil.thorowUntilFinish = function(){
 	var diceVal = thorowDice();
 	return halts.indexOf(diceVal)<0;
 }
+
+var GameX = function(numberOfPlayers){
+	var game = {};
+	for(var i=1;i<=numberOfPlayers;i++){
+		game["player"+i] = {};
+	}
+	return game;
+}
+exports.GameX = GameX;
 exports.gameUtil = gameUtil;
 
 
