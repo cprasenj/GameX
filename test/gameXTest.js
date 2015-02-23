@@ -1,7 +1,9 @@
 var assert = require("chai").assert;
 var ld = require('lodash');
 var gameUtil = require("../gameModule/game.js").gameUtil;
+var GameX = require("../gameModule/game.js").GameX;
 var game = require("../gameModule/game.js").game;
+
 // describe("Adda", function(){
 // 	beforeEach(function(){
 // 		fs.writeFileSync('./tests/data/instance.db',backUpDb);
@@ -30,4 +32,14 @@ describe("#isFinish",function(){
 	})
 })
 
+describe("GameX ",function(){
+	describe("Constructor",function(){
+		it("should give an Object containing players of given number",function(done){
+			var game = new GameX(2);
+			assert.ok(game.player1);
+			assert.ok(game.player2);
+			done();
+		});
+	})
+});
 
