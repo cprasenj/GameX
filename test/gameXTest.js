@@ -8,16 +8,26 @@ describe("GameX ",function(){
 	beforeEach(function(){
 		game = new GameX(2);
 	});
-	describe("#hasTurnCompleted",function(){
-		it("It should give truthy value for ",function() {
+	describe("#hasToRollTheDiceAgain",function(){
+		it("It should give truthy value for diceRolled containing 2",function() {
 			game.who_sTurn="player2";
 			game.player2.diceRolled = [1,5,5,2];
-			assert.equal(game.hasTurnCompleted(),true);
+			assert.equal(game.hasToRollTheDiceAgain(),false);
 		});
-		it("It should give falsy value for ",function() {
+		it("It should give falsy value for diceRolled containing 3",function() {
 			game.who_sTurn="player1";
-			game.player1.diceRolled = [6];
-			assert.equal(game.hasTurnCompleted(),false);
+			game.player1.diceRolled = [6,3];
+			assert.equal(game.hasToRollTheDiceAgain(),false);
+		});
+		it("It should give falsy value for diceRolled containing 4",function() {
+			game.who_sTurn="player1";
+			game.player1.diceRolled = [6,4];
+			assert.equal(game.hasToRollTheDiceAgain(),false);
+		});
+		it("It should give falsy value for diceRolled doesn't contain 2 3 4",function() {
+			game.who_sTurn="player1";
+			game.player1.diceRolled = [6,5,5,12];
+			assert.equal(game.hasToRollTheDiceAgain(),true);
 		});
 	});
 	describe("Constructor",function(){
