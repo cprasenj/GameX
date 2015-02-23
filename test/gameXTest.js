@@ -35,7 +35,7 @@ describe("#isFinish",function(){
 		var halts =[2,3,4];
 		game.who_sTurn="player1";
 		var isFinish = gameUtil.isFinish();
-		assert.equal(isFinish,false);
+		assert.equal(isFinish,true);
 	})
 })
 
