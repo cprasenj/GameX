@@ -21,7 +21,11 @@ gameUtil.thorowUntilFinish = function(){
 var GameX = function(numberOfPlayers){
 	var game = {};
 	for(var i=1;i<=numberOfPlayers;i++){
-		game["player"+i] = {};
+		var player = {
+			diceRolled: [],
+			coins: [{},{},{},{},{},{}]
+		};
+		game["player"+i] = player;
 	}
 	return game;
 }

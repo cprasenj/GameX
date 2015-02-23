@@ -35,6 +35,22 @@ describe("GameX ",function(){
 			assert.ok(game.player2);
 			done();
 		});
-	})
+	});
+	describe("Constructor",function(){
+		it("players will have an array for dice rolled",function(done){
+			var game = new GameX(2);
+			assert.ok(game.player1.diceRolled);
+			assert.ok(game.player2.diceRolled);
+			done();
+		});
+	});
+	describe("Constructor",function(){
+		it("players should have an array of 6 play coins",function(done){
+			var game = new GameX(2);
+			assert.equal(game.player1.coins.length,6);
+			assert.equal(game.player2.coins.length,6);
+			done();
+		});
+	});
 });
 
