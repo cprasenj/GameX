@@ -61,4 +61,31 @@ describe("GameX ",function(){
 			done();
 		});
 	});
+	describe("Constructor",function(){
+		it("coins should have their positions",function(done){
+			var game = new GameX(1);
+			var coins = game.player1.coins;
+			var allCoinsPositionsAreInitially_0 = function(coin){
+				return coin.position == 0;
+			}
+			assert.ok(coins.every(allCoinsPositionsAreInitially_0));
+			done();
+		});
+	});
+	describe("moveTo",function(){
+		it("should change the position of the coin with the given number",function(done){
+			var game = new GameX(2);
+			var player = "player1";
+			var cId = 0;
+			var distance = 5;
+			game[player].coins[cId].position = 2;
+			var afterMoved = function(player,cId){
+				var coin = game[player].coins[cId];
+				assert.deepEqual(coin, game.player1.coins[0]);
+				assert.equal(coin.position, 7);
+				done();
+			};
+			game.moveTo(player,cId,distance,afterMoved);
+		});
+	});
 });

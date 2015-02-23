@@ -11,17 +11,25 @@ gameUtil.thorowUntilFinish = function(){
 	var diceVal = thorowDice();
 	return halts.indexOf(diceVal)<0;
 }
+var samplePlayer = {
+	diceRolled: [],
+	coins: [
+		{position:0}, {position:0}, {position:0},
+		{position:0}, {position:0}, {position:0}
+	]
+};
 
 var GameX = function(numberOfPlayers){
 	var game = {};
 	for(var i=1;i<=numberOfPlayers;i++){
-		var player = {
-			diceRolled: [],
-			coins: [{},{},{},{},{},{}],
-			path: paths[i-1]
-		};
-		game["player"+i] = player;
+		game["player"+i] = JSON.parse(JSON.stringify(samplePlayer));
+		game["player"+i].path = paths[i-1];
 	}
+	game.moveTo = function(player,cId,distance,callAfterMoved){
+		game[player].coins[cId].position +=distance;
+		callAfterMoved(player,cId);
+	};
+
 	return game;
 }
 exports.GameX = GameX;
