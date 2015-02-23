@@ -26,29 +26,21 @@ describe("GameX ",function(){
 			assert.ok(game.player2);
 			done();
 		});
-	});
-	describe("Constructor",function(){
 		it("players will have an array for dice rolled",function(done){
 			assert.ok(game.player1.diceRolled);
 			assert.ok(game.player2.diceRolled);
 			done();
 		});
-	});
-	describe("Constructor",function(){
 		it("players should have an array of 6 play coins",function(done){
 			assert.equal(game.player1.coins.length,6);
 			assert.equal(game.player2.coins.length,6);
 			done();
 		});
-	});
-	describe("Constructor",function(){
 		it("players should have the path to travel along the board",function(done){
 			assert.deepEqual(game.player1.path,paths[0]);
 			assert.deepEqual(game.player2.path,paths[1]);
 			done();
 		});
-	});
-	describe("Constructor",function(){
 		it("coins should have their positions",function(done){
 			var coins = game.player1.coins;
 			var allCoinsPositionsAreInitially_0 = function(coin){
