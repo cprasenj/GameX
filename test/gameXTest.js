@@ -32,6 +32,13 @@ describe("GameX ",function(){
 		it("initially it is the turn of player1",function() {
 			assert.equal(game.who_sTurn,"player1");
 		})
+		it("should show player2 after player1 has finished his turn",function() {
+			game.who_sTurn = "player1";
+			game.changePlayer();
+			assert.equal(game.who_sTurn,"player2");
+			game.changePlayer();
+			assert.equal(game.who_sTurn,"player1");
+		})
 	})
 	describe("Constructor",function(){
 		it("should give an Object containing players of given number",function(done){
@@ -89,4 +96,17 @@ describe("GameX ",function(){
 			game.moveTo("player2",cId,distance,afterMoved);
 		});
 	});
+	describe("#rollTheDice",function() {
+		it("should insert a value inbetween valid range into diceRolled of who_sTurn",function() {
+			var len = game[game.who_sTurn].diceRolled.length;
+			var rollTheDiceCallback = function() {
+				assert.equal(game[game.who_sTurn].diceRolled.length,len+1);
+			};
+			game.rollTheDice(rollTheDiceCallback);
+			len = game[game.who_sTurn].diceRolled.length;
+			game.rollTheDice(rollTheDiceCallback);
+			len = game[game.who_sTurn].diceRolled.length;
+			game.rollTheDice(rollTheDiceCallback);
+		});
+	})
 });

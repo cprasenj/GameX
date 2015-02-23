@@ -17,6 +17,7 @@ var samplePlayer = {
 var GameX = function(numberOfPlayers){
 	var game = {};
 	game.who_sTurn = "player1";
+	game.players = ["player1","player2"];
 	for(var i=1;i<=numberOfPlayers;i++){
 		game["player"+i] = JSON.parse(JSON.stringify(samplePlayer));
 		game["player"+i].path = paths[i-1];
@@ -31,13 +32,15 @@ var GameX = function(numberOfPlayers){
 		var diceVal = ld.last(game[player].diceRolled);
 		return !(halts.indexOf(diceVal)>=0);
 	};
-	game.rollTheDice = function(player,callback) {
+	game.rollTheDice = function(callback) {
 		diceval = giveDiceValue();
-
+		game[game.who_sTurn].diceRolled.push(diceval);
+		callback();
 	};
-	// game.changePlayer = function() {
-
-	// };
+	game.changePlayer = function() {
+		var turn = game.players.indexOf(game.who_sTurn);
+		turn == game.players.length - 1 ? (game.who_sTurn = game.players[0]) : (game.who_sTurn = game.players[turn+1]); 
+	};
 	return game;
 }
 
