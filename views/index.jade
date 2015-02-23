@@ -6,10 +6,13 @@ block content
   div(id='diceTrack')
    |dice rolled
   div(id='board')
-   |what is going
   div(id='playersTrack')
    |who is playing
-  script(scr='/javascripts/render.js')
   script.
-   console.log(5);
-   renderTheBlocks();
+   var board=this.document.getElementById('board');
+   for(id=1;id<50;id++){
+    var div=this.document.createElement('div');
+    div.setAttribute('id',id);
+    div.setAttribute('class','cell');
+    board.appendChild(div);
+   }

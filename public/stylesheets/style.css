@@ -7,6 +7,13 @@ a {
 	color: #00B7FF;
 }
 
+.cell{
+	display: inline-block;
+	border: 1px solid black;
+	height: 100px;
+	width: 100px;  
+}
+
 #pageTitle {
 	text-align: center;
 	margin: 0px;
@@ -15,20 +22,20 @@ a {
 	display: inline-block;
 	float: right;
 	width: 60%;
-	height: 650px;
+	height: 730px;
 	border: 2px solid grey;
 }
 #diceTrack {
 	display: inline-block;
 	float: right;
 	width: 18%;
-	height: 650px;
+	height: 730px;
 	border: 2px solid grey;
 }
 #playersTrack {
 	display: inline-block;
 	float: right;
 	width: 18%;
-	height: 650px;
+	height: 730px;
 	border: 2px solid grey;
 }
