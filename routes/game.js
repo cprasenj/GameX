@@ -32,4 +32,6 @@ var game = {
 		],
 		path:paths[2]
 	}
+
+	
 };
