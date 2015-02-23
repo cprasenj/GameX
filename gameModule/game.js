@@ -35,11 +35,12 @@ var GameX = function(numberOfPlayers){
 	game.rollTheDice = function(callback) {
 		diceval = giveDiceValue();
 		game[game.who_sTurn].diceRolled.push(diceval);
-		callback();
+		callback(diceval);
 	};
 	game.changePlayer = function() {
 		var turn = game.players.indexOf(game.who_sTurn);
-		turn == game.players.length - 1 ? (game.who_sTurn = game.players[0]) : (game.who_sTurn = game.players[turn+1]); 
+		turn == game.players.length - 1 ? (game.who_sTurn = game.players[0]) :
+		(game.who_sTurn = game.players[turn+1]); 
 	};
 	return game;
 }

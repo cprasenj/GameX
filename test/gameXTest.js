@@ -99,7 +99,8 @@ describe("GameX ",function(){
 	describe("#rollTheDice",function() {
 		it("should insert a value inbetween valid range into diceRolled of who_sTurn",function() {
 			var len = game[game.who_sTurn].diceRolled.length;
-			var rollTheDiceCallback = function() {
+			var rollTheDiceCallback = function(val) {
+				assert.ok(val < 7 || val == 12);
 				assert.equal(game[game.who_sTurn].diceRolled.length,len+1);
 			};
 			game.rollTheDice(rollTheDiceCallback);
