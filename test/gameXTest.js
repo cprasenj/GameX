@@ -1,6 +1,7 @@
 var assert = require("chai").assert;
 var gameUtil = require("../gameModule/game.js").gameUtil;
 var GameX = require("../gameModule/game.js").GameX;
+var paths = require("../gameModule/paths.js").paths;
 
 // describe("Adda", function(){
 // 	beforeEach(function(){
@@ -52,5 +53,12 @@ describe("GameX ",function(){
 			done();
 		});
 	});
+	describe("Constructor",function(){
+		it("players should have the path to travel along the board",function(done){
+			var game = new GameX(2);
+			assert.deepEqual(game.player1.path,paths[0]);
+			assert.deepEqual(game.player2.path,paths[1]);
+			done();
+		});
+	});
 });
-
