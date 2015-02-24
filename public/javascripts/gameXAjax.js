@@ -32,8 +32,14 @@ var moveCoin = function (cId) {
 	 	var cellId = Res.player.path[+coin.position - 1];
 	 	var cell = $("#"+cellId);
 	 	cell.append("<div>B</div>");
-	 	// removin th checkbox
+	 	removeCheckBox();
 	 });
+	 var removeCheckBox = function(){
+	 	var diceTable = $('#diceTable');
+	 	checkedBoxes.forEach(function(box){
+	 		$("#"+box.id).parent().parent().remove();
+	 	});
+	 }
 };
 var throwDice = function(){
 	$.ajax({url:"/updateDiceTable"}).done(function(diceDataAfterRolled){
