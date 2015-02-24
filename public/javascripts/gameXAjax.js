@@ -1,5 +1,6 @@
 var CHECKBOX = ['<tr><td><input',
 				'id="n?id"',
+				'class="diceNumbers"',
 				'type="checkbox"',
 				'name="diceVlaue"',
 				'value=?value>',
@@ -12,8 +13,17 @@ var getCheckBox = function(newNumber){
 					.replace("?newNumber",newNumber);
 };
 var moveCoin = function (cId) {
-	console.log($('#'+cId));
-	console.log($('input:checked'));
+	var cId = Number(cId[1])-1;
+	var checkboxes = $('.diceNumbers');
+	var distance = Array.prototype.reduce.call(
+		checkboxes,
+		function(sum,checkbox){
+			return sum+Number(checkbox.value);
+		},
+		0
+	);
+	$.ajax({url:"/moveCoin?cId="+cId+"&distance="+distance})
+	 .done(function(MoveCoinResponse){});
 };
 var throwDice = function(){
 	$.ajax({url:"/updateDiceTable"}).done(function(diceDataAfterRolled){
