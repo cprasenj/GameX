@@ -114,4 +114,27 @@ describe("GameX ",function(){
 			game.rollTheDice(rollTheDiceCallback);
 		});
 	})
+	describe("#getAtHome",function() {
+		it("initially no coin is At Home",function() {
+			assert.deepEqual(game.getAtHome(),[0,0]);
+		});
+		it("player1 has 1 coin at home",function() {
+			game["player1"].coins[0].position = 48;
+			assert.deepEqual(game.getAtHome(),[1,0]);
+		})
+		it("player1 and player2 each has 1 coin at home",function() {
+			game["player1"].coins[0].position = 48;
+			game["player2"].coins[0].position = 48;
+			assert.deepEqual(game.getAtHome(),[1,1]);
+		})
+		it("player1 and player2 each has 6 coin at home",function() {
+			game["player1"].coins.forEach(function(coin) {
+				coin.position = 48;
+			});
+			game["player2"].coins.forEach(function(coin) {
+				coin.position = 48;
+			});
+			assert.deepEqual(game.getAtHome(),[6,6]);
+		})
+	})
 });

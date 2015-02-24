@@ -43,6 +43,13 @@ var GameX = function(numberOfPlayers){
 		turn == game.players.length - 1 ? (game.who_sTurn = game.players[0]) :
 		(game.who_sTurn = game.players[turn+1]); 
 	};
+	game.getAtHome = function() {
+		return game.players.map(function(player){
+			return game[player].coins.reduce(function(count,coin){
+				return coin.position == 48 ? (count + 1) : count;
+			},0);
+		})
+	}
 	return game;
 }
 
