@@ -27,4 +27,13 @@ router.get('/moveCoin',function(req,res){
 		res.end(JSON.stringify(response));
 	});
 });
+router.get("/updatePlayerInfo",function(req,res) {
+	var atHome = Game.getAtHome();
+	var onBoard = Game.getOnBoard();
+	var response = {
+		"atHome" : atHome,
+		"onBoard" : onBoard
+	}
+	res.end(JSON.stringify(response));
+});
 module.exports = router;

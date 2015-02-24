@@ -23,10 +23,16 @@ block content
    button(id="TD" onclick="throwDice()") THROW DICE 
   div(id='board')
   div(id='playersTrack')
+
    div(id='info@player1')
-    p i m p1
+    P Player 1
+    div(id="board@player1") On Bord 0/6:  
+    div(id="home@player1") At Home 0/6:
+   hr
    div(id='info@player2')
-    p i m player2
+    p Player 2
+    div(id="board@player2") On Bord 0/6:   
+    div(id="home@player2") At Home 0/6:
   script.
    var board=this.document.getElementById('board');
    for(id=1;id<50;id++){
