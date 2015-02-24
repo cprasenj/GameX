@@ -137,4 +137,27 @@ describe("GameX ",function(){
 			assert.deepEqual(game.getAtHome(),[6,6]);
 		})
 	})
+	describe("#getOnboard",function() {
+		it("initially no coin is on board",function() {
+			assert.deepEqual(game.getOnBord(),[0,0]);
+		});
+		it("player1 has 1 coin at on board",function() {
+			game["player1"].coins[0].position = 42;
+			assert.deepEqual(game.getOnBord(),[1,0]);
+		})
+		it("player1 and player2 each has 1 coin on board",function() {
+			game["player1"].coins[0].position = 41;
+			game["player2"].coins[0].position = 45;
+			assert.deepEqual(game.getOnBord(),[1,1]);
+		})
+		it("player1 and player2 each has 6 coin on board",function() {
+			game["player1"].coins.forEach(function(coin) {
+				coin.position = 12;
+			});
+			game["player2"].coins.forEach(function(coin) {
+				coin.position = 13;
+			});
+			assert.deepEqual(game.getOnBord(),[6,6]);
+		})
+	})
 });
