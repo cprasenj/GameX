@@ -11,7 +11,8 @@ var samplePlayer = {
 	coins: [
 		{position:0}, {position:0}, {position:0},
 		{position:0}, {position:0}, {position:0}
-	]
+	],
+	"isAssassin" : false
 };
 
 var GameX = function(numberOfPlayers){
@@ -50,7 +51,7 @@ var GameX = function(numberOfPlayers){
 			},0);
 		})
 	};
-	game.getOnBord = function(){
+	game.getOnBoard = function(){
 		return game.players.map(function(player){
 			return game[player].coins.reduce(function(count,coin){
 				return coin.position && coin.position < 49 ? (count + 1) : count;
