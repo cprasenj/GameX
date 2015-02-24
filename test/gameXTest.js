@@ -80,7 +80,7 @@ describe("GameX ",function(){
 			var distance = 5;
 			game.player1.coins[cId].position = 2;
 			var afterMoved = function(player,cId){
-				var coin = game[player].coins[cId];
+				var coin = player.coins[cId];
 				assert.deepEqual(coin, game.player1.coins[0]);
 				assert.equal(coin.position, 7);
 				done();
@@ -92,7 +92,7 @@ describe("GameX ",function(){
 			var distance = 12;
 			game.player2.coins[cId].position = 25;
 			var afterMoved = function(player,cId){
-				var coin = game[player].coins[cId];
+				var coin = player.coins[cId];
 				assert.deepEqual(coin, game.player2.coins[0]);
 				assert.equal(coin.position, 37);
 				done();

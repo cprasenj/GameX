@@ -25,7 +25,7 @@ var GameX = function(numberOfPlayers){
 	};
 	game.moveTo = function(player,cId,distance,callAfterMoved){
 		game[player].coins[cId].position +=distance;
-		callAfterMoved(player,cId);
+		callAfterMoved(game[player],cId);
 	};
 	game.hasToRollTheDiceAgain = function(){
 		var halts=[2,3,4];
