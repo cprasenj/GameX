@@ -15,15 +15,21 @@ var getCheckBox = function(newNumber){
 var moveCoin = function (cId) {
 	var cId = Number(cId[1])-1;
 	var checkboxes = $('.diceNumbers');
-	var distance = Array.prototype.reduce.call(
+	var checkedBoxes = Array.prototype.filter.call(
 		checkboxes,
-		function(sum,checkbox){
-			return sum+Number(checkbox.value);
-		},
-		0
+		function(checkbox){
+			return checkbox.checked;
+		}
 	);
+	var distance = checkedBoxes.reduce(function(sum,checkbox){
+		return sum+Number(checkbox.value);
+	},0);
+
 	$.ajax({url:"/moveCoin?cId="+cId+"&distance="+distance})
-	 .done(function(MoveCoinResponse){});
+	 .done(function(MoveCoinResponse){
+	 	// movin th con
+	 	// removin th checkbox
+	 });
 };
 var throwDice = function(){
 	$.ajax({url:"/updateDiceTable"}).done(function(diceDataAfterRolled){
