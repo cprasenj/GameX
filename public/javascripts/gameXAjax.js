@@ -28,8 +28,14 @@ var moveCoin = function (cId) {
 	$.ajax({url:"/moveCoin?cId="+cId+"&distance="+distance})
 	 .done(function(MoveCoinResponse){
 	 	// movin th con
-	 	// removin th checkbox
+	 	removeCheckBox();
 	 });
+	 var removeCheckBox = function(){
+	 	var diceTable = $('#diceTable');
+	 	checkedBoxes.forEach(function(box){
+	 		$("#"+box.id).parent().parent().remove();
+	 	});
+	 }
 };
 var throwDice = function(){
 	$.ajax({url:"/updateDiceTable"}).done(function(diceDataAfterRolled){
