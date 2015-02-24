@@ -3,22 +3,23 @@ extends layout
 block content
  h1(id='pageTitle') #{title}
  script(src="./javascripts/gameXAjax.js")
+ script(src="./javascripts/jquery-2.1.1.min.js")
  div
   div(id='diceTrack')
    |dice rolled
    div
     p(id="turn") Player1
    div(id="coins")
-    button(id="c1") c1
-    button(id="c2") c2
-    button(id="c3") c3
-    button(id="c4") c4
-    button(id="c5") c5
-    button(id="c6") c6
+    button(id="c1" onclick="moveCoin(id)") c1
+    button(id="c2" onclick="moveCoin(id)") c2
+    button(id="c3" onclick="moveCoin(id)") c3
+    button(id="c4" onclick="moveCoin(id)") c4
+    button(id="c5" onclick="moveCoin(id)") c5
+    button(id="c6" onclick="moveCoin(id)") c6
    div(id="diceStack")
     p DICE STACK
     table(id="diceTable")
-   button(id="TD" onclick="throwDice()") THROW DICE
+   button(id="TD" onclick="throwDice()") THROW DICE 
   div(id='board')
   div(id='playersTrack')
    |who is playing

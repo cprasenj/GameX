@@ -10,9 +10,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/updateDiceTable',function(req,res){
 	Game.rollTheDice(function(newCount){
-		console.log("here something went wrong ------",newCount);
-		var newCountHtmlElement='<tr><td><input type="checkbox" name="diceVlaue" value="1"><td>'+newCount+'</td></tr>';
-		res.end(newCountHtmlElement);
+		res.end(newCount+'');
 	});
 });
 
