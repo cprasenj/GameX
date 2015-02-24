@@ -14,5 +14,4 @@ exports.Game = {
 			{position:0}, {position:0}, {position:0}
 		]		
 	},
-	safeZones : [4,9,13,22,25,28,37,41,46]
 };

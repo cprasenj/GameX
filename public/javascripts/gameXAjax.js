@@ -1,16 +1,24 @@
+
 var throwDice = function(){
-	var diceTable = document.getElementById("diceTable");
-	sendAjaxGetRequest("/updateDiceTable",diceTable);
+	$.ajax({url:"/updateDiceTable"}).done(function(data){
+		data = JSON.parse(data);
+		var diceTable = $("#diceTable");
+		diceTableHTML = diceTable.html()+data.element; 
+		diceTable.html(diceTableHTML);
+		onFinish(data.isFinished);
+	});
+}
+var onFinish= function (isFinish){
+	if(isFinish){
+		$("#TD").attr('disabled','true');
+	}
 }
 
-var sendAjaxGetRequest = function(request,elementToChange){
-	var ajaxHttp = new XMLHttpRequest();
-	ajaxHttp.onreadystatechange=function(){
-		if (ajaxHttp.readyState==4 && ajaxHttp.status==200){
-			var response = ajaxHttp.responseText;
-			elementToChange.innerHTML=elementToChange.innerHTML+response;
-		}
-	}
-	ajaxHttp.open("GET",request,true);
-	ajaxHttp.send();
-};
+
+var onPageLoad =function(){
+	$("#TD").click(throwDice);
+
+}
+
+
+$(onPageLoad);

@@ -16,6 +16,7 @@ var samplePlayer = {
 
 var GameX = function(numberOfPlayers){
 	var game = {};
+	game.safeZones = [4,9,13,22,25,28,37,41,46];
 	game.who_sTurn = "player1";
 	game.players = ["player1","player2"];
 	for(var i=1;i<=numberOfPlayers;i++){

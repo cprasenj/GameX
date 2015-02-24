@@ -69,6 +69,10 @@ describe("GameX ",function(){
 			assert.ok(coins.every(allCoinsPositionsAreInitially_0));
 			done();
 		});
+		it("game have safeZone",function(done){
+			assert.deepEqual(game.safeZones,[4,9,13,22,25,28,37,41,46]);
+			done();
+		});
 	});
 	describe("moveTo",function(){
 		it("should change the position of the coin with the given number on outer ring",function(done){
