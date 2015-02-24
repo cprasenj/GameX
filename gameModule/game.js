@@ -46,17 +46,17 @@ var GameX = function(numberOfPlayers){
 	game.getAtHome = function() {
 		return game.players.map(function(player){
 			return game[player].coins.reduce(function(count,coin){
-				return coin.position == 48 ? (count + 1) : count;
+				return coin.position == 49 ? (count + 1) : count;
 			},0);
 		})
-	}
+	};
 	game.getOnBord = function(){
 		return game.players.map(function(player){
 			return game[player].coins.reduce(function(count,coin){
-				return coin.position && coin.position < 48? (count + 1) : count;
+				return coin.position && coin.position < 49 ? (count + 1) : count;
 			},0);
 		})	
-	}
+	};
 	return game;
 }
 
