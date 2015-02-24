@@ -23,7 +23,10 @@ block content
    button(id="TD" onclick="throwDice()") THROW DICE 
   div(id='board')
   div(id='playersTrack')
-   |who is playing
+   div(id='info@player1')
+    p i m p1
+   div(id='info@player2')
+    p i m player2
   script.
    var board=this.document.getElementById('board');
    for(id=1;id<50;id++){
