@@ -10,22 +10,22 @@ describe("GameX ",function(){
 		it("It should give truthy value for diceRolled containing 2",function() {
 			game.who_sTurn="player2";
 			game.players[game.who_sTurn].diceRolled = [1,5,5,2];
-			assert.equal(game.hasToRollTheDiceAgain(),false);
+			assert.equal(game.players[game.who_sTurn].hasToRollTheDiceAgain(),false);
 		});
 		it("It should give falsy value for diceRolled containing 3",function() {
 			game.who_sTurn="player1";
 			game.players[game.who_sTurn].diceRolled = [6,3];
-			assert.equal(game.hasToRollTheDiceAgain(),false);
+			assert.equal(game.players[game.who_sTurn].hasToRollTheDiceAgain(),false);
 		});
 		it("It should give falsy value for diceRolled containing 4",function() {
 			game.who_sTurn="player1";
 			game.players[game.who_sTurn].diceRolled = [6,4];
-			assert.equal(game.hasToRollTheDiceAgain(),false);
+			assert.equal(game.players[game.who_sTurn].hasToRollTheDiceAgain(),false);
 		});
 		it("It should give falsy value for diceRolled doesn't contain 2 3 4",function() {
 			game.who_sTurn="player1";
 			game.players[game.who_sTurn].diceRolled = [6,5,5,12];
-			assert.equal(game.hasToRollTheDiceAgain(),true);
+			assert.equal(game.players[game.who_sTurn].hasToRollTheDiceAgain(),true);
 		});
 	});
 	describe("who_sTurn",function() {
@@ -77,10 +77,10 @@ describe("GameX ",function(){
 	describe("moveTo",function(){
 		it("should change the position of the coin with the given number on outer ring",function(done){
 			var cId = 0;
-			var distance = 5;
+			var distance = [2,3];
 			game.players.player1.coins[cId].position = 2;
 			var afterMoved = function(player,cId){
-				var coin = game.players[player].coins[cId];
+				var coin = player.coins[cId];
 				assert.deepEqual(coin, game.players.player1.coins[0]);
 				assert.equal(coin.position, 7);
 				done();
@@ -89,10 +89,10 @@ describe("GameX ",function(){
 		});
 		it("should change the position of the coin with the given number inner ring",function(done){
 			var cId = 0;
-			var distance = 12;
+			var distance = [6,6];
 			game.players.player2.coins[cId].position = 25;
 			var afterMoved = function(player,cId){
-				var coin = game.players[player].coins[cId];
+				var coin = player.coins[cId];
 				assert.deepEqual(coin, game.players.player2.coins[0]);
 				assert.equal(coin.position, 37);
 				done();
@@ -107,11 +107,11 @@ describe("GameX ",function(){
 				assert.ok(val < 7 || val == 12);
 				assert.equal(game.players[game.who_sTurn].diceRolled.length,len+1);
 			};
-			game.rollTheDice(rollTheDiceCallback);
+			game.players[game.who_sTurn].rollTheDice(rollTheDiceCallback);
 			len = game.players[game.who_sTurn].diceRolled.length;
-			game.rollTheDice(rollTheDiceCallback);
+			game.players[game.who_sTurn].rollTheDice(rollTheDiceCallback);
 			len = game.players[game.who_sTurn].diceRolled.length;
-			game.rollTheDice(rollTheDiceCallback);
+			game.players[game.who_sTurn].rollTheDice(rollTheDiceCallback);
 		});
 	})
 	describe("#getAtHome",function() {
@@ -160,4 +160,10 @@ describe("GameX ",function(){
 			assert.deepEqual(game.getOnBoard(),[6,6]);
 		})
 	})
+	describe("#areYouDone",function() {
+		it("player is done when all dice count is finished ",function() {
+			game.players["player1"].diceRolled =[];
+			assert.ok(game.players["player1"].areYouDone());
+		});
+	});
 });

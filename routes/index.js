@@ -8,21 +8,22 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'GameX', Game: Game});
 });
 router.get('/updateDiceTable',function(req,res){
-	Game.rollTheDice(function(newNumber){
+	Game.players[Game.who_sTurn].rollTheDice(function(newNumber){
 		var response = {
 			"newNumber":newNumber,
-			"isFinished":!Game.hasToRollTheDiceAgain()
+			"isFinished":!Game.players[Game.who_sTurn].hasToRollTheDiceAgain()
 		};
 		res.end(JSON.stringify(response));
 	});
 });
 router.get('/moveCoin',function(req,res){
 	var cId = req.query.cId;
-	var distance = req.query.distance;
-	Game.moveTo(Game.who_sTurn,cId,distance,function(player,cId){
+	var dices = JSON.parse(req.query.dices);
+	Game.moveTo(Game.who_sTurn,cId,dices,function(player,cId,isDone){
 		var response = {
 			player: player,
-			cId: cId
+			cId: cId,
+			isDone:isDone
 		};
 		res.end(JSON.stringify(response));
 	});

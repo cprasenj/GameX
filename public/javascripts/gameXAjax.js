@@ -12,6 +12,14 @@ var getCheckBox = function(newNumber){
 					.replace("?value",newNumber)
 					.replace("?newNumber",newNumber);
 };
+var changeTurn = function(isDone){
+	console.log("turn changed "+isDone);
+
+	if(isDone){
+		$("#TD").attr('disabled','false');
+	}
+};
+
 var moveCoin = function (cId) {
 	var cId = Number(cId[1])-1;
 	var checkboxes = $('.diceNumbers');
@@ -21,11 +29,11 @@ var moveCoin = function (cId) {
 			return checkbox.checked;
 		}
 	);
-	var distance = checkedBoxes.reduce(function(sum,checkbox){
-		return sum+Number(checkbox.value);
-	},0);
+	var diceCounts = checkedBoxes.map(function(checkbox){
+		return checkbox.value;
+	});
 
-	$.ajax({url:"/moveCoin?cId="+cId+"&distance="+distance})
+	$.ajax({url:"/moveCoin?cId="+cId+"&dices="+diceCounts.toString()})
 	 .done(function(MoveCoinResponse){
 	 	var Res = JSON.parse(MoveCoinResponse);
 	 	var coin = Res.player.coins[Res.cId]
@@ -33,8 +41,10 @@ var moveCoin = function (cId) {
 	 	var cell = $("#"+cellId);
 	 	cell.append("<div>B</div>");
 	 	removeCheckBox();
+	 	changeTurn(Res.isDone);
 	 });
 	 var removeCheckBox = function(){
+	 	console.log("ima here");
 	 	var diceTable = $('#diceTable');
 	 	checkedBoxes.forEach(function(box){
 	 		$("#"+box.id).parent().parent().remove();

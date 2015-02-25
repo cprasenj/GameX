@@ -15,13 +15,30 @@ var samplePlayer = {
 	"isAssassin" : false
 };
 
+plyayerproto ={
+	hasToRollTheDiceAgain : function(){
+		var halts=[2,3,4];
+		return !(halts.indexOf(ld.last(this.diceRolled))>=0);
+	},
+	rollTheDice : function(callback) {
+		diceval = giveDiceValue();
+		this.diceRolled.push(diceval);
+		callback(diceval);
+	},
+	areYouDone:function(){
+		return this.diceRolled.length == 0;
+	}
+}
+
 var players = function(numberOfPlayers) {
-	var players = {};
 	for(var i=1;i<=numberOfPlayers;i++){
-		players["player"+i] = JSON.parse(JSON.stringify(samplePlayer));
-		players["player"+i].path = paths[i-1];
+		this["player"+i] = JSON.parse(JSON.stringify(samplePlayer));
+		this["player"+i].path = paths[i-1];	
+		this["player"+i].hasToRollTheDiceAgain = plyayerproto.hasToRollTheDiceAgain;
+		this["player"+i].rollTheDice = plyayerproto.rollTheDice;
+		this["player"+i].areYouDone = plyayerproto.areYouDone;
 	};
-	return players;
+
 }
 
 var GameX = function(numberOfPlayers){
@@ -30,20 +47,17 @@ var GameX = function(numberOfPlayers){
 	game.who_sTurn = "player1";
 	game.players  = new players(numberOfPlayers);
 	game.playerList = Object.keys(game.players);
-	game.moveTo = function(player,cId,distance,callAfterMoved){
+	game.moveTo = function(player,cId,dicevals,callAfterMoved){
+		var distance = dicevals.reduce(function(sum,val){return sum+=val},0);
 		game.players[player].coins[cId].position +=distance;
-		callAfterMoved(player,cId);
-	};
-	game.hasToRollTheDiceAgain = function(){
-		var halts=[2,3,4];
-		var player=game.who_sTurn;
-		var diceVal = ld.last(game.players[player].diceRolled);
-		return !(halts.indexOf(diceVal)>=0);
-	};
-	game.rollTheDice = function(callback) {
-		diceval = giveDiceValue();
-		game.players[game.who_sTurn].diceRolled.push(diceval);
-		callback(diceval);
+		dicevals.forEach(function(val){
+			index = game.players[player].diceRolled.indexOf(val);
+			ld.pullAt(game.players[player].diceRolled,index);
+		})
+		var isDone = game.players[player].areYouDone();
+		isDone && game.changePlayer();
+		callAfterMoved(game.players[player],cId,isDone);
+
 	};
 	game.changePlayer = function() {
 		var turn = game.playerList.indexOf(game.who_sTurn);
