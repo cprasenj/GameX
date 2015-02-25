@@ -21,11 +21,13 @@ a {
 #board {
 	display: inline-block;
 	float: right;
+	text-align: center;
 	width: 60%;
 	height: 730px;
 	border: 2px solid grey;
 }
 #diceTrack {
+	font-size: 30px;
 	display: inline-block;
 	float: right;
 	width: 18%;
@@ -33,6 +35,7 @@ a {
 	border: 2px solid grey;
 }
 #playersTrack {
+	font-size: 30px;
 	display: inline-block;
 	float: right;
 	width: 18%;
