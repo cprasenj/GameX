@@ -4,47 +4,37 @@ block content
  h1(id='pageTitle') #{title}
  script(src="./javascripts/gameXAjax.js")
  script(src="./javascripts/jquery-2.1.1.min.js")
- div
-  div(id='diceTrack')
-   |dice rolled
-   div
-    p(id="turn") Player1
-   div(id="coins")
-    button(id="c1" onclick="moveCoin(id)") c1
-    button(id="c2" onclick="moveCoin(id)") c2
-    button(id="c3" onclick="moveCoin(id)") c3
-    button(id="c4" onclick="moveCoin(id)") c4
-    button(id="c5" onclick="moveCoin(id)") c5
-    button(id="c6" onclick="moveCoin(id)") c6
-   div(id="diceStack")
-    p DICE STACK
-    table(id="diceTable")
-   button(id="TD" onclick="throwDice()") THROW DICE 
-  div(id='board')
-  div(id='playersTrack')
-
-   div(id='info@player1')
-    P Player 1
-    div(id="board@player1") On Bord 0/6:  
-    div(id="home@player1") At Home 0/6:
-   hr
-   div(id='info@player2')
-    p Player 2
-    div(id="board@player2") On Bord 0/6:   
-    div(id="home@player2") At Home 0/6:
+ script(src="./javascripts/layout.js")
+ div(id='diceTrack')
+  |Dice Rolled
+  div
+   p(id="turn") Player1
+  div(id="coins")
+   button(id="c1" onclick="moveCoin(id)") c1
+   button(id="c2" onclick="moveCoin(id)") c2
+   button(id="c3" onclick="moveCoin(id)") c3
+   button(id="c4" onclick="moveCoin(id)") c4
+   button(id="c5" onclick="moveCoin(id)") c5
+   button(id="c6" onclick="moveCoin(id)") c6
+  div(id="diceStack")
+   |Dice Stack
+   table(id="diceTable")
+  button(id="TD" onclick="throwDice()") THROW DICE 
+ div(id='board')
+ div(id='playersTrack')
+  div(id='info@player1')
+   |Player 1
+   div(id="board@player1") On Bord 0/6:  
+   div(id="home@player1") At Home 0/6:
+  hr
+  div(id='info@player2')
+   |Player 2
+   div(id="board@player2") On Bord 0/6:   
+   div(id="home@player2") At Home 0/6:
   script.
-   var board=this.document.getElementById('board');
-   for(id=1;id<50;id++){
-    var div=this.document.createElement('div');
-    div.setAttribute('id',id);
-    div.setAttribute('class','cell');
-    board.appendChild(div);
-    if(id%7==0){
-     var br=this.document.createElement('br');
-     board.appendChild(br);
-    }
-   }
-  each zoneId in Game.safeZones
-   script.
-    var zone=this.document.getElementById(#{zoneId});
-    zone.setAttribute('style','background-image: url(./images/safe.png);');
+   setupSVG();
+ //- each zoneId in Game.safeZones
+ //-  script.
+ //-   console.log(#{Game.safeZones});
+ //-   var zone=this.document.getElementById(#{zoneId});
+ //-   zone.setAttribute('style','background-image: url(./images/safe.png);');
