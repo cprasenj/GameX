@@ -16,7 +16,7 @@ var changeTurn = function(isDone){
 	console.log("turn changed "+isDone);
 
 	if(isDone){
-		$("#TD").attr('disabled','false');
+		$("#TD").removeAttr('disabled');
 	}
 };
 
@@ -33,7 +33,7 @@ var moveCoin = function (cId) {
 		return checkbox.value;
 	});
 
-	$.ajax({url:"/moveCoin?cId="+cId+"&dices="+diceCounts.toString()})
+	$.ajax({url:"/moveCoin?cId="+cId+"&dices="+JSON.stringify(diceCounts)})
 	 .done(function(MoveCoinResponse){
 	 	var Res = JSON.parse(MoveCoinResponse);
 	 	var coin = Res.player.coins[Res.cId]

@@ -47,13 +47,14 @@ var GameX = function(numberOfPlayers){
 	game.who_sTurn = "player1";
 	game.players  = new players(numberOfPlayers);
 	game.playerList = Object.keys(game.players);
+
 	game.moveTo = function(player,cId,dicevals,callAfterMoved){
-		var distance = dicevals.reduce(function(sum,val){return sum+=val},0);
+		var distance = dicevals.reduce(function(sum,val){return sum+=val;},0);
 		game.players[player].coins[cId].position +=distance;
 		dicevals.forEach(function(val){
 			index = game.players[player].diceRolled.indexOf(val);
-			ld.pullAt(game.players[player].diceRolled,index);
-		})
+			game.players[player].diceRolled=ld.compact(ld.pullAt(game.players[player].diceRolled,index));
+		});
 		var isDone = game.players[player].areYouDone();
 		isDone && game.changePlayer();
 		callAfterMoved(game.players[player],cId,isDone);
