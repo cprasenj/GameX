@@ -27,7 +27,11 @@ var moveCoin = function (cId) {
 
 	$.ajax({url:"/moveCoin?cId="+cId+"&distance="+distance})
 	 .done(function(MoveCoinResponse){
-	 	// movin th con
+	 	var Res = JSON.parse(MoveCoinResponse);
+	 	var coin = Res.player.coins[Res.cId]
+	 	var cellId = Res.player.path[+coin.position - 1];
+	 	var cell = $("#"+cellId);
+	 	cell.append("<div>B</div>");
 	 	removeCheckBox();
 	 });
 	 var removeCheckBox = function(){
