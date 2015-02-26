@@ -1,28 +1,34 @@
-var setupSVG = function(){
-  var unit=80;
-  var LINE = '<line x1="X1" y1="Y1" x2="X2" y2="Y2" stroke="black" stroke-width="2" />'
+// paths = require("../gameModule/path.js");
+// Board = {
+//   cells: [],
+//   paths: {
+//     player1: [4,3,2,.........18,25],
+//     player2: [22,29,.........24,25],
+//     player3: [46,47,.........32,25],
+//     player4: [28,21,.........26,25]
+//   },
+// };
+
+// var createCells = function() {
+//   var i;
+//   for(i=1;i<=49;i++) {
+
+//   }
+// }
+
+var setupSVG = function() {
   $("#board")
   .append(
-    '<svg id="Bsvg" width="700" height="700" style="border: 5px solid red;"></svg>'
+    '<svg id="Bsvg" width="700" height="700" style="border: 5px solid green;"></svg>'
     );
   var board = $("#Bsvg");
   var innerHtml = "";
-  for(var i=1; i<=8; i++){
-    var line = LINE
-      .replace("X1",""+unit*1)
-      .replace("X2",""+unit*8)
-      .replace("Y1",""+(i*unit))
-      .replace("Y2",""+(i*unit));
-    innerHtml += line;
-    var line = LINE
-      .replace("X1",""+(i*unit))
-      .replace("X2",""+(i*unit))
-      .replace("Y1",""+unit*1)
-      .replace("Y2",""+unit*8);
-    innerHtml += line;
+  for(var i = 0;i <8;i++) {
+    for(var j = 0;j<8;j++) {
+      innerHtml+= '<rect x="'+j*87.3+'" y="'+i*87.3+'" width="87.3" height="87.3"'+
+    'style="fill:blue;stroke:green;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />';
+    j==7 && (innerHtml+='</br>');
+    }
   }
   $("#Bsvg").html(innerHtml);
 }
-
-// has to be done
-//     if(cell.isSafe) drawSafe(cell.id);

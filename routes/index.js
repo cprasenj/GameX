@@ -26,7 +26,6 @@ router.get('/moveCoin',function(req,res){
 		var response = {
 			player: player,
 			cId: cId,
-			isDone:isDone
 		};
 		res.end(JSON.stringify(response));
 	});

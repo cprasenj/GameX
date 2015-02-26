@@ -50,7 +50,7 @@ var GameX = function(numberOfPlayers){
 
 	game.moveTo = function(player,cId,dicevals,callAfterMoved){
 		var distance = dicevals.reduce(function(sum,val){return sum+=val;},0);
-		game.players[player].coins[cId].position +=distance;
+		game.players[player].coins[cId].position +=parseInt(distance);
 		dicevals.forEach(function(val){
 			index = game.players[player].diceRolled.indexOf(val);
 			game.players[player].diceRolled=ld.compact(ld.pullAt(game.players[player].diceRolled,index));
@@ -83,24 +83,3 @@ var GameX = function(numberOfPlayers){
 }
 
 exports.GameX = GameX;
-
-var Board = function(){
-	this.cells = {};
-};
-Board.prototype = {
-	drawCell: function(cell,drawCoin){
-		cell.coinDetails.forEach(function(coinDetail,i){
-			drawCoin(cell.id,coinDetail,i);
-		});
-	},
-	drawCells: function(players,drawCoinInterface){
-		var drawCoin = function(cell,coinDetail,whereToDraw){
-			var player = players[coinDetail.owner];
-			var coin = player.coins[coinDetail.coinId];
-			drawCoinInterface(cell.id,coin,whereToDraw);
-		};
-		this.cells.forEach(function(cell){
-			drawCell(cell,drawCoin);
-		});
-	}
-};

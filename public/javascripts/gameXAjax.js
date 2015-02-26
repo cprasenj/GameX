@@ -13,7 +13,6 @@ var getCheckBox = function(newNumber){
 					.replace("?newNumber",newNumber);
 };
 var changeTurn = function(isDone){
-	console.log("turn changed "+isDone);
 
 	if(isDone){
 		$("#TD").removeAttr('disabled');
@@ -36,15 +35,15 @@ var moveCoin = function (cId) {
 	$.ajax({url:"/moveCoin?cId="+cId+"&dices="+JSON.stringify(diceCounts)})
 	 .done(function(MoveCoinResponse){
 	 	var Res = JSON.parse(MoveCoinResponse);
-	 	var coin = Res.player.coins[Res.cId]
+	 	var coin = Res.player.coins[Res.cId];
 	 	var cellId = Res.player.path[+coin.position - 1];
-	 	var cell = $("#"+cellId);
-	 	cell.append("<div>B</div>");
+	 	var cell = $("#"+cellId);	    
+	 	$("#"+cellId).html('<rect class="btn" x="0" y="0" width="10" height="10" border=2px  >');
+	 	console.log(cell);
 	 	removeCheckBox();
 	 	changeTurn(Res.isDone);
 	 });
 	 var removeCheckBox = function(){
-	 	console.log("ima here");
 	 	var diceTable = $('#diceTable');
 	 	checkedBoxes.forEach(function(box){
 	 		$("#"+box.id).parent().parent().remove();

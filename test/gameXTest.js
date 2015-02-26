@@ -166,4 +166,9 @@ describe("GameX ",function(){
 			assert.ok(game.players["player1"].areYouDone());
 		});
 	});
+	describe("#isAllowedToplay",function() {
+		it("it should say false if the player has all the coins out of the board",function(){
+			
+		})
+	})
 });
