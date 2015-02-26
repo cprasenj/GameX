@@ -9,13 +9,6 @@
 //   },
 // };
 
-// var createCells = function() {
-//   var i;
-//   for(i=1;i<=49;i++) {
-
-//   }
-// }
-
 var setupSVG = function() {
   $("#board")
   .append(
@@ -26,8 +19,10 @@ var setupSVG = function() {
   var innerHtml = "";
   for(var i = 1;i <8;i++) {
     for(var j = 1;j<8;j++) {
-      innerHtml+= '<rect x="'+j*80+'" y="'+i*80+'" width="80" height="80"'+'id ="'+count+'"'+
-    'style="fill:blue;stroke:green;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />';
+      innerHtml+= '<rect x="'+j*80+'" y="'+i*80+'" width="80" height="80"'+'id ="'+count+'"'+'coins = "{player1:[],player2:[]}"';
+      ([4,9,13,22,25,28,37,41,46].indexOf(count)>=0) ? (innerHtml += 'isSafe = "true"') :
+      (innerHtml += 'isSafe = "false"');
+    innerHtml+='style="fill:blue;stroke:green;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />';
     j==7 && (innerHtml+='</br>');
     count++;
     }
