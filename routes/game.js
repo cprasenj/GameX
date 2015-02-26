@@ -62,6 +62,12 @@ cell = {
 	id: 20, //(1 to 49)
 };
 Board = {
+	startingPoints:{
+		'player1':4,
+		'player2':46,
+		'player3':22,
+		'player4':28
+	},
 	cells: [
 		{},
 		{},

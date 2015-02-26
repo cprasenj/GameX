@@ -38,7 +38,6 @@ var players = function(numberOfPlayers) {
 		this["player"+i].rollTheDice = plyayerproto.rollTheDice;
 		this["player"+i].areYouDone = plyayerproto.areYouDone;
 	};
-
 }
 
 var GameX = function(numberOfPlayers){

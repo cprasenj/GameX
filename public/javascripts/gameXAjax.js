@@ -37,9 +37,8 @@ var moveCoin = function (cId) {
 	 	var Res = JSON.parse(MoveCoinResponse);
 	 	var coin = Res.player.coins[Res.cId];
 	 	var cellId = Res.player.path[+coin.position - 1];
-	 	var cell = $("#"+cellId);	    
-	 	$("#"+cellId).html('<rect class="btn" x="0" y="0" width="10" height="10" border=2px  >');
-	 	console.log(cell);
+	 	var cell = $("#"+cellId);
+	 	$("#"+cellId).html('<p>4</p>');
 	 	removeCheckBox();
 	 	changeTurn(Res.isDone);
 	 });
