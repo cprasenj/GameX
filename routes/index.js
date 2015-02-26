@@ -5,7 +5,10 @@ var Game = new GameX(2);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', { title: 'GameX', Game: Game, Board: {}});
+	res.render('index', {
+		title: 'GameX',
+		Game: Game
+	});
 });
 router.get('/updateDiceTable',function(req,res){
 	Game.players[Game.who_sTurn].rollTheDice(function(newNumber){
