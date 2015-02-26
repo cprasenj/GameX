@@ -82,3 +82,24 @@ var GameX = function(numberOfPlayers){
 }
 
 exports.GameX = GameX;
+
+var Board = function(){
+	this.cells = {};
+};
+Board.prototype = {
+	drawCell: function(cell,drawCoin){
+		cell.coinDetails.forEach(function(coinDetail,i){
+			drawCoin(cell.id,coinDetail,i);
+		});
+	},
+	drawCells: function(players,drawCoinInterface){
+		var drawCoin = function(cell,coinDetail,whereToDraw){
+			var player = players[coinDetail.owner];
+			var coin = player.coins[coinDetail.coinId];
+			drawCoinInterface(cell.id,coin,whereToDraw);
+		};
+		this.cells.forEach(function(cell){
+			drawCell(cell,drawCoin);
+		});
+	}
+};
