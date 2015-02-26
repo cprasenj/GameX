@@ -18,6 +18,7 @@ a {
 	text-align: center;
 	margin: 0px;
 }
+
 #board {
 	display: inline-block;
 	float: right;
@@ -26,6 +27,7 @@ a {
 	height: 730px;
 	border: 2px solid grey;
 }
+
 #diceTrack {
 	font-size: 30px;
 	display: inline-block;

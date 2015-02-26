@@ -21,13 +21,15 @@ var setupSVG = function() {
   .append(
     '<svg id="Bsvg" width="700" height="700" style="border: 5px solid green;"></svg>'
     );
+  var count = 1;
   var board = $("#Bsvg");
   var innerHtml = "";
-  for(var i = 0;i <8;i++) {
-    for(var j = 0;j<8;j++) {
-      innerHtml+= '<rect x="'+j*87.3+'" y="'+i*87.3+'" width="87.3" height="87.3"'+
+  for(var i = 1;i <8;i++) {
+    for(var j = 1;j<8;j++) {
+      innerHtml+= '<rect x="'+j*80+'" y="'+i*80+'" width="80" height="80"'+'id ="'+count+'"'+
     'style="fill:blue;stroke:green;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />';
     j==7 && (innerHtml+='</br>');
+    count++;
     }
   }
   $("#Bsvg").html(innerHtml);
