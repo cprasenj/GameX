@@ -9,8 +9,8 @@ giveDiceValue = function() {
 var samplePlayer = {
 	diceRolled: [],
 	coins: [
-		{position:0}, {position:0}, {position:0},
-		{position:0}, {position:0}, {position:0}
+		{position:0,prevPosition:0}, {position:0,prevPosition:0}, {position:0,prevPosition:0},
+		{position:0,prevPosition:0}, {position:0,prevPosition:0}, {position:0,prevPosition:0}
 	],
 	"isAssassin" : false
 };
@@ -49,6 +49,7 @@ var GameX = function(numberOfPlayers){
 
 	game.moveTo = function(player,cId,dicevals,callAfterMoved){
 		var distance = dicevals.reduce(function(sum,val){return sum+=parseInt(val);},0);
+		game.players[player].coins[cId].prevPosition  = game.players[player].coins[cId].position; 
 		game.players[player].coins[cId].position +=parseInt(distance);
 		dicevals.forEach(function(val){
 			index = game.players[player].diceRolled.indexOf(val);
@@ -56,7 +57,6 @@ var GameX = function(numberOfPlayers){
 		});
 		var isDone = game.players[player].areYouDone();
 		isDone && game.changePlayer() && (game.players[player]['isDone'] = isDone);
-		console.log(game.players[player]);
 		callAfterMoved(game.players[player],cId,isDone);
 
 	};

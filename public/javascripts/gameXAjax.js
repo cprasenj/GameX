@@ -36,10 +36,12 @@ var moveCoin = function (cId) {
 	 	var Res = JSON.parse(MoveCoinResponse);
 	 	var coin = Res.player.coins[Res.cId];
 	 	var cellId = Res.player.path[+coin.position - 1];
+	 	var prevCellId = Res.player.path[+coin.prevPosition - 1];
 	 	var cell = $("#"+cellId);
+	 	var prevCell = $("#"+prevCellId);
 	 	$("#"+cellId).attr("style","fill-opacity:0.4;");
+	 	$("#"+prevCellId).attr("style","fill-opacity:0;stroke:green;stroke-width:1;");
 	 	removeCheckBox();
-	 	console.log(Res.player);
 	 	changeTurn(Res.player.isDone);
 	 });
 	 var removeCheckBox = function(){
