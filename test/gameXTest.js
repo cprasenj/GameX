@@ -166,9 +166,22 @@ describe("GameX ",function(){
 			assert.ok(game.players["player1"].areYouDone());
 		});
 	});
-	describe("#isAllowedToplay",function() {
-		it("it should say false if the player has all the coins out of the board",function(){
+	// describe("#isAllowedToplay",function() {
+	// 	it("it should say false if the player has all the coins out of the board",function(){
 			
-		})
+	// 	})
+	// })
+
+	describe("#isSafeZone",function() {
+		it("it should return true if given cell is safe",function() {
+			assert.ok(game.isSafeZone(4));
+		});
+		it("it should return true if given cell is safe cell",function() {
+			assert.ok(game.isSafeZone(13));
+		});
+		it("it should return false if given cell is not safe",function() {
+			assert.notOk(game.isSafeZone(2));
+		});
 	})
+
 });

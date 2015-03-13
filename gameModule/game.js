@@ -80,6 +80,9 @@ var GameX = function(numberOfPlayers){
 			},0);
 		})	
 	};
+	game.isSafeZone = function(position) {
+		return this.safeZones.indexOf(position)>=0;
+	}
 	return game;
 }
 
