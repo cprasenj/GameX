@@ -28,4 +28,23 @@ var setupSVG = function() {
     }
   }
   $("#Bsvg").html(innerHtml);
+  markSafesOnBoard();
+};
+
+var isSafe = function(cell) {
+  return cell.getAttribute("issafe") == "true";
 }
+var vs;
+var markSafesOnBoard = function() {
+  var Bsvg = $("#Bsvg")[0].childNodes;
+  var safeZones = Array.prototype.filter.call(Bsvg, isSafe);
+  console.log("from out side"+safeZones.length);
+  safeZones.forEach(function(safeZone) {
+    // safeZone.html("Pooja");
+    // safeZone.innerHtml = '<image x="200" y="200" width="80px" height="80px" xlink:href="images/safe.png">';
+    vs=safeZone; 
+    safeZone.image(null, 0, 0, 80, 80, "images/safe.png");  
+    console.log(safeZone+"***");
+  });
+};
+
