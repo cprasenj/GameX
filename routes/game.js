@@ -1,7 +1,9 @@
+
 coin1 = {
 	player: "player1",
 	position: 6
 };
+
 Players = {
 	player1: {
 		coins: {

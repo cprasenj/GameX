@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var GameX = require("../gameModule/game.js").GameX;
-var Game = new GameX(2);
+var Game = new GameX(1);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
