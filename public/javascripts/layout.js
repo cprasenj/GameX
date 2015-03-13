@@ -12,7 +12,7 @@
 var setupSVG = function() {
   $("#board")
   .append(
-    '<svg id="Bsvg" width="700" height="700" style="border: 5px solid green;"></svg>'
+    '<svg id="Bsvg" width="720" height="720" style="border: 5px solid green;"></svg>'
     );
   var count = 1;
   var board = $("#Bsvg");
@@ -22,7 +22,7 @@ var setupSVG = function() {
       innerHtml+= '<rect x="'+j*80+'" y="'+i*80+'" width="80" height="80"'+'id ="'+count+'"'+'coins = "{player1:[],player2:[]}"';
       ([4,9,13,22,25,28,37,41,46].indexOf(count)>=0) ? (innerHtml += 'isSafe = "true"') :
       (innerHtml += 'isSafe = "false"');
-    innerHtml+='style="fill:blue;stroke:green;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />';
+    innerHtml+='style="fill:blue;stroke:green;stroke-width:1;fill-opacity:0;stroke-opacity:0.9" />';
     j==7 && (innerHtml+='</br>');
     count++;
     }

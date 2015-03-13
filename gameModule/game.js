@@ -48,21 +48,23 @@ var GameX = function(numberOfPlayers){
 	game.playerList = Object.keys(game.players);
 
 	game.moveTo = function(player,cId,dicevals,callAfterMoved){
-		var distance = dicevals.reduce(function(sum,val){return sum+=val;},0);
+		var distance = dicevals.reduce(function(sum,val){return sum+=parseInt(val);},0);
 		game.players[player].coins[cId].position +=parseInt(distance);
 		dicevals.forEach(function(val){
 			index = game.players[player].diceRolled.indexOf(val);
 			game.players[player].diceRolled=ld.compact(ld.pullAt(game.players[player].diceRolled,index));
 		});
 		var isDone = game.players[player].areYouDone();
-		isDone && game.changePlayer();
+		isDone && game.changePlayer() && (game.players[player]['isDone'] = isDone);
+		console.log(game.players[player]);
 		callAfterMoved(game.players[player],cId,isDone);
 
 	};
 	game.changePlayer = function() {
 		var turn = game.playerList.indexOf(game.who_sTurn);
 		turn == game.playerList.length - 1 ? (game.who_sTurn = game.playerList[0]) :
-		(game.who_sTurn = game.playerList[turn+1]); 
+		(game.who_sTurn = game.playerList[turn+1]);
+		return 1; 
 	};
 	game.getAtHome = function() {
 		return game.playerList.map(function(player){

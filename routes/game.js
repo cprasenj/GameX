@@ -1,6 +1,6 @@
 coin1 = {
 	player: "player1",
-	position: 6,
+	position: 6
 };
 Players = {
 	player1: {
@@ -48,15 +48,15 @@ cell = {
 	coinsDetails: [
 		coin1sDetail: {
 			player: "player1",
-			whichCoin: "coin1",
+			whichCoin: "coin1"
 		},
 		coin2sDetail: {
 			player: "player2",
-			whichCoin: "coin5",
+			whichCoin: "coin5"
 		},
 		coin3sDetail: {
 			player: "player1",
-			whichCoin: "coin6",
+			whichCoin: "coin6"
 		}
 	],
 	id: 20, //(1 to 49)

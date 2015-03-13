@@ -13,7 +13,6 @@ var getCheckBox = function(newNumber){
 					.replace("?newNumber",newNumber);
 };
 var changeTurn = function(isDone){
-
 	if(isDone){
 		$("#TD").removeAttr('disabled');
 	}
@@ -38,9 +37,10 @@ var moveCoin = function (cId) {
 	 	var coin = Res.player.coins[Res.cId];
 	 	var cellId = Res.player.path[+coin.position - 1];
 	 	var cell = $("#"+cellId);
-	 	$("#"+cellId).html('<p>4</p>');
+	 	$("#"+cellId).attr("style","fill-opacity:0.4;");
 	 	removeCheckBox();
-	 	changeTurn(Res.isDone);
+	 	console.log(Res.player);
+	 	changeTurn(Res.player.isDone);
 	 });
 	 var removeCheckBox = function(){
 	 	var diceTable = $('#diceTable');
